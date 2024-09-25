@@ -1,35 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT with OpenAI API</title>
+    <title>ChatGPT API Demo</title>
 </head>
 <body>
-    <h1>レシピに関する質問をしてください</h1>
-    <textarea id="question" placeholder="質問を入力してください"></textarea>
-    <button onclick="askChatGPT()">送信</button>
-    
-    <h3>回答:</h3>
-    <p id="response"></p>
-
-    <script>
-        async function askChatGPT() {
-            const question = document.getElementById("question").value;
-
-            const response = await fetch('/ask-chatgpt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    prompt: question
-                })
-            });
-
-            const data = await response.json();
-            document.getElementById("response").innerText = data.choices[0].text;
-        }
-    </script>
-</body>
-</html>
