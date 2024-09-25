@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI API Demo</title>
+</head>
+<body>
+    <h1>OpenAI APIを利用したチャット</h1>
+    <textarea id="input" placeholder="質問を入力してください" rows="4" cols="50"></textarea><br>
+    <button onclick="sendMessage()">送信</button>
+    <div id="response"></div>
+
+    <script>
+        async function sendMessage() {
+            const inputElement = document.getElementById("input");
+            const responseElement = document.getElementById("response");
+
+            // 入力内容を取得
+            const userMessage = inputElement.value;
+            
+            // OpenAI APIキー (こちらに自分のAPIキーを入力)
+            const apiKey = "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";
+
+            // APIリクエスト
+            const requestBody = {
+                model: "text-davinci-003",
+                prompt: userMessage,
+                max_tokens: 100
+            };
+
+            try {
+                const response = await fetch("https://api.openai.com/v1/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                responseElement.innerHTML = `<p>回答: ${data.choices[0].text.trim()}</p>`;
+            } catch (error) {
+                responseElement.innerHTML = `<p>エラーが発生しました: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
