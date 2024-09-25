@@ -20,7 +20,7 @@ app.post('/ask-chatgpt', async (req, res) => {
             max_tokens: 100,
         }, {
             headers: {
-                'Authorization': `Bearer YOUR_OPENAI_API_KEY`,
+                'Authorization': `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`,
                 'Content-Type': 'application/json'
             }
         });
