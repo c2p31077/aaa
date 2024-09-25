@@ -16,7 +16,7 @@ app.post('/ask-chatgpt', async (req, res) => {
       max_tokens: 100, // 応答の長さを調整
     }, {
       headers: {
-        'Authorization': `Bearer YOUR_OPENAI_API_KEY`, // APIキーを挿入
+        'Authorization': `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`, // APIキーを挿入
         'Content-Type': 'application/json'
       }
     });
